@@ -21,6 +21,7 @@ public class Hello extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hello);
 		dgv = (DraggableGridView) findViewById(R.id.dgv);
+		dgv.isInEditMode();
 		for (int i = 0; i < 12; i++) {
 			ImageView iv = new ImageView(this);
 			iv.setImageResource(icon[i]);
