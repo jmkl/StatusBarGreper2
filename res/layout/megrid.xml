@@ -23,7 +23,7 @@
             android:layout_alignParentBottom="true"
             android:background="#44000000"
             android:gravity="center"
-            android:text="dafuq" />
+            />
     </RelativeLayout>
 
 </LinearLayout>

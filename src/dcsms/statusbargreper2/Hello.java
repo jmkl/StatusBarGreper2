@@ -21,7 +21,6 @@ public class Hello extends Activity {
 	private GridView gdv;
 	ColorPickerDialog cp_dial;
 	private DcsmsPreference dcsms;
-	private List<String> mymenu;
 	private String[] menu = { "TraficState", "Battery", "Data", "Signal",
 			"Clock", "Statusbar Backgroud", "SuperShorCut", "Weather",
 			"Carrier" };
@@ -33,11 +32,8 @@ public class Hello extends Activity {
 		setContentView(R.layout.hello);
 		dcsms = new DcsmsPreference(Hello.this);
 		gdv = (GridView) findViewById(R.id.gdv);
-		mymenu = new ArrayList<String>();
-		for (int i = 0; i < menu.length; i++) {
-			mymenu.add(menu[i]);
-		}
-		GridAdapter adap = new GridAdapter(Hello.this, mymenu);
+
+		GridAdapter adap = new GridAdapter(Hello.this, menu);
 		gdv.setAdapter(adap);
 		gdv.setOnItemClickListener(new OnItemClickListener() {
 

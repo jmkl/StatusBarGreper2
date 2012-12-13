@@ -12,13 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GridAdapter extends BaseAdapter {
-	private List<String> data;
+	private String[] data;
 	private LayoutInflater inflater;
-	private TextView tv;
-	private ImageView iv;
+	private ViewHolder holder;
 
-	public GridAdapter(Context ctx, List<String> mymenu) {
-		this.data = mymenu;
+	public GridAdapter(Context ctx, String[] mymenu) {
+		data = mymenu;
 		inflater = (LayoutInflater) ctx
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -26,13 +25,13 @@ public class GridAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return data.size();
+		return data.length;
 	}
 
 	@Override
 	public Object getItem(int pos) {
 		// TODO Auto-generated method stub
-		return data.get(pos);
+		return data[pos];
 	}
 
 	@Override
@@ -46,12 +45,24 @@ public class GridAdapter extends BaseAdapter {
 		View v = conView;
 		if (v == null) {
 			v = inflater.inflate(R.layout.megrid, null);
+			holder = new ViewHolder();
+			holder.tv = (TextView) v.findViewById(R.id.grid_txt);
+			holder.iv = (ImageView) v.findViewById(R.id.grid_view);
+			v.setTag(holder);
+			
 		}else{
-			tv = (TextView) v.findViewById(R.id.grid_txt);
-			iv = (ImageView) v.findViewById(R.id.grid_view);
-			tv.setText(data.get(pos));
+			
+			  holder = (ViewHolder)v.getTag();
 		}
+		holder.tv.setText(data[pos]);
 		return v;
 	}
 
+	private class ViewHolder
+{
+    TextView  tv;
+	ImageView iv;
+}
+	
+	
 }
