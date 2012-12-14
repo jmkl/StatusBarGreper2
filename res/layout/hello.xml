@@ -1,27 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="25dip"
         android:background="#44000000" >
 
+        <dcsms.statusbargreper2.systemui.TrafficState
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/icon"
+            android:gravity="bottom" />
+
         <dcsms.statusbargreper2.systemui.Icon
+            android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
-   
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="310dip" >
-    <dcsms.statusbargreper2.DraggableGridView
-        android:id="@+id/dgv"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"/>
 
-</LinearLayout>
+    <GridView
+        android:id="@+id/gdv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:maxItemsPerRow="3"
+        android:numColumns="3" />
+
 </LinearLayout>

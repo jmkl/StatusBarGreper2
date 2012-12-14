@@ -1,0 +1,41 @@
+package dcsms.statusbargreper2;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import dcsms.statusbargreper2.systemui.Unit;
+
+public class DcsmsPreference {
+	private final SharedPreferences pref;
+	private Unit unit = new Unit();
+
+	@SuppressWarnings("deprecation")
+	public DcsmsPreference(Context c) {
+		this.pref = c.getSharedPreferences(unit.GREPER_PAKETNAME,
+				Context.MODE_WORLD_READABLE);
+		loadPrefs(pref);
+	}
+
+	private void loadPrefs(SharedPreferences _pref) {
+		unit.TS_COLOR = _pref.getInt(unit.PREF_TRAFICSTATE_COLOR, Color.WHITE);
+
+	}
+
+	public String saveStringSetting(String key, String value) {
+		getEditor().putString(key, value).commit();
+		return value;
+	}
+
+	public void saveIntSetting(String key, int value) {
+		getEditor().putInt(key, value).commit();
+	}
+
+	public int getTraficStateColor() {
+		return pref.getInt(unit.PREF_TRAFICSTATE_COLOR, Color.WHITE);
+	}
+
+	public SharedPreferences.Editor getEditor() {
+		return pref.edit();
+	}
+
+}

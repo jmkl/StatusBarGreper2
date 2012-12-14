@@ -3,4 +3,7 @@
     <issue id="NewApi" severity="ignore">
         <ignore path="src\dcsms\statusbargreper2\systemui\DcsmsStatusbarIcon.java" />
     </issue>
+    <issue id="WorldReadableFiles">
+        <ignore path="src\dcsms\statusbargreper2\DcsmsPreference.java" />
+    </issue>
 </lint>

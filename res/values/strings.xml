@@ -4,5 +4,7 @@
     <string name="app_name">StatusbarGreper 2</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="press_color_to_apply">Press color to Apply</string>
+    <string name="dialog_color_picker">Pick ur Color</string>
 
 </resources>

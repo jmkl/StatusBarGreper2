@@ -1,42 +1,64 @@
 package dcsms.statusbargreper2;
 
+import net.margaritov.preference.colorpicker.ColorPickerDialog;
+import net.margaritov.preference.colorpicker.ColorPickerDialog.OnColorChangedListener;
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import dcsms.statusbargreper2.adapter.GridAdapter;
+import dcsms.statusbargreper2.systemui.Unit;
+import dcsms.statusbargreper2.util.updateGUI;
 
 public class Hello extends Activity {
-	private DraggableGridView dgv;
-	private int[] icon = { R.drawable.a, R.drawable.b, R.drawable.c,
-			R.drawable.d, R.drawable.e, R.drawable.f, R.drawable.g,
-			R.drawable.h, R.drawable.i, R.drawable.j, R.drawable.k,
-			R.drawable.l, R.drawable.m, R.drawable.n, R.drawable.o };
+	private Unit unit = new Unit();
+	private GridView gdv;
+	ColorPickerDialog cp_dial;
+	private DcsmsPreference dcsms;
+	private String[] menu = { "traficstate color", "adadeh", "a", "b0" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(android.R.style.Theme_Wallpaper_NoTitleBar_Fullscreen);
+		setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hello);
-		dgv = (DraggableGridView) findViewById(R.id.dgv);
-		dgv.isInEditMode();
-		for (int i = 0; i < 12; i++) {
-			ImageView iv = new ImageView(this);
-			iv.setImageResource(icon[i]);
-			dgv.addView(iv);
-		}
+		dcsms = new DcsmsPreference(Hello.this);
+		gdv = (GridView) findViewById(R.id.gdv);
+		GridAdapter adap = new GridAdapter(Hello.this, menu);
+		gdv.setAdapter(adap);
+		gdv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View v, int pos,
+					long id) {
+				switch (pos) {
+				case 0:
+					ShowDialog();
+					break;
+
+				default:
+					break;
+				}
+
+			}
+		});
+
 	}
 
-	private Bitmap getTiles() {
-		Bitmap bmp = Bitmap.createBitmap(150, 150, Bitmap.Config.RGB_565);
-		Canvas c = new Canvas(bmp);
-		Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-		p.setColor(0X44309AA7);
-		c.drawRect(new Rect(0, 0, 150, 150), p);
+	private void ShowDialog() {
+		cp_dial = new ColorPickerDialog(this, dcsms.getTraficStateColor());
+		cp_dial.setAlphaSliderVisible(true);
+		cp_dial.setOnColorChangedListener(new OnColorChangedListener() {
 
-		return bmp;
+			@Override
+			public void onColorChanged(int color) {
+				dcsms.saveIntSetting(unit.PREF_TRAFICSTATE_COLOR, color);
+				new updateGUI(Hello.this);
+			}
+		});
+		cp_dial.show();
 	}
-
 }

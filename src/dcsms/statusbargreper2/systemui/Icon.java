@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2012 dcsms
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package dcsms.statusbargreper2.systemui;
 
 import android.content.BroadcastReceiver;
@@ -31,12 +46,13 @@ public class Icon extends LinearLayout {
 	private int battLevel;
 	private Animation anim;
 	private boolean animasi = false;
+	private getReferensi ref;
 	// Baterai
 	private Bitmap batterai;
 	private int statusBaterai;
 	private int x, y, bx, by;
-
-	private int i;// sinyal
+	private int i;
+	// sinyal
 	private TelephonyManager Tel;
 	private DcsmsPhoneStateListener MyListener;
 	private int dataX;
@@ -112,7 +128,7 @@ public class Icon extends LinearLayout {
 		if (!mAttached) {
 			mAttached = true;
 			IntentFilter filter = new IntentFilter();
-			filter.addAction(unit.GREPER_STATUSBAR);
+			filter.addAction(unit.GREPER_UPDATESTATUSBAR);
 			filter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
 			filter.addAction(Intent.ACTION_BATTERY_CHANGED);
 			getContext().registerReceiver(mIntentReceiver, filter, null,
@@ -142,7 +158,7 @@ public class Icon extends LinearLayout {
 			String action = intent.getAction();
 
 			if (action.equals(Intent.ACTION_BATTERY_CHANGED)
-					|| action.equals(unit.GREPER_STATUSBAR)) {
+					|| action.equals(unit.GREPER_UPDATESTATUSBAR)) {
 				statusBaterai = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
 						BatteryManager.BATTERY_STATUS_UNKNOWN);
 				int rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL,
@@ -161,13 +177,8 @@ public class Icon extends LinearLayout {
 	};
 
 	private void reUpdateBaterai() {
-		Context cont = null;
-		try {
-			cont = mContext.createPackageContext(unit.GREPER_PACK, 0);
-		} catch (NameNotFoundException e) {
-		}
-		SharedPreferences pref = cont.getSharedPreferences("LAYOUT",
-				Context.MODE_WORLD_READABLE);
+		ref = new getReferensi(mContext, "LAYOUT");
+		SharedPreferences pref = ref.getPref();
 		if (pref.contains(unit.ICON_BATERAI)) {
 			// XXX something custom
 		} else {
