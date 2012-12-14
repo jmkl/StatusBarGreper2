@@ -1,5 +1,8 @@
 package dcsms.statusbargreper2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.margaritov.preference.colorpicker.ColorPickerDialog;
 import net.margaritov.preference.colorpicker.ColorPickerDialog.OnColorChangedListener;
 import android.app.Activity;
@@ -18,7 +21,10 @@ public class Hello extends Activity {
 	private GridView gdv;
 	ColorPickerDialog cp_dial;
 	private DcsmsPreference dcsms;
-	private String[] menu = { "traficstate color", "adadeh", "a", "b0" };
+	private List<String> mymenu;
+	private String[] menu = { "TraficState", "Battery", "Data", "Signal",
+			"Clock", "Statusbar Backgroud", "SuperShorCut", "Weather",
+			"Carrier" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,11 @@ public class Hello extends Activity {
 		setContentView(R.layout.hello);
 		dcsms = new DcsmsPreference(Hello.this);
 		gdv = (GridView) findViewById(R.id.gdv);
-		GridAdapter adap = new GridAdapter(Hello.this, menu);
+		mymenu = new ArrayList<String>();
+		for (int i = 0; i < menu.length; i++) {
+			mymenu.add(menu[i]);
+		}
+		GridAdapter adap = new GridAdapter(Hello.this, mymenu);
 		gdv.setAdapter(adap);
 		gdv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -56,7 +66,7 @@ public class Hello extends Activity {
 			@Override
 			public void onColorChanged(int color) {
 				dcsms.saveIntSetting(unit.PREF_TRAFICSTATE_COLOR, color);
-				new updateGUI(Hello.this);
+				new updateGUI(Hello.this, unit.GREPER_UPDATESTATUSBARTRAFFIC);
 			}
 		});
 		cp_dial.show();

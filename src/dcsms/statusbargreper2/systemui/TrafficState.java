@@ -57,7 +57,7 @@ public class TrafficState extends TextView {
 			mAttached = true;
 			IntentFilter filter = new IntentFilter();
 			filter.addAction(Intent.ACTION_BOOT_COMPLETED);
-			filter.addAction(unit.GREPER_UPDATESTATUSBAR);
+			filter.addAction(unit.GREPER_UPDATESTATUSBARTRAFFIC);
 			getContext().registerReceiver(mIntentReceiver, filter, null,
 					getHandler());
 			mLastTime = 0;
@@ -79,7 +79,8 @@ public class TrafficState extends TextView {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			if (action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals(unit.GREPER_UPDATESTATUSBAR)) {
+			if (action.equals(Intent.ACTION_BOOT_COMPLETED)
+					|| action.equals(unit.GREPER_UPDATESTATUSBARTRAFFIC)) {
 				modifInterface();
 			}
 		}

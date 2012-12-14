@@ -1,7 +1,8 @@
 package dcsms.statusbargreper2.systemui;
 
 public class Unit {
-public String GREPER_UPDATESTATUSBAR = "dcsms.statusbargreper2.UPDATESTATUSBAR";
+public String GREPER_UPDATESTATUSBARICON = "dcsms.statusbargreper2.UPDATESTATUSBARICON";
+public String GREPER_UPDATESTATUSBARTRAFFIC = "dcsms.statusbargreper2.UPDATESTATUSBARTRAFFIC";
 public String GREPER_PAKETNAME="dcsms.statusbargreper2";
 public String ICON_BATERAI="Baterai Icon";
 public String ICON_SINYAL="Sinyal Icon";

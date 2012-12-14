@@ -1,5 +1,7 @@
 package dcsms.statusbargreper2.adapter;
 
+import java.util.List;
+
 import dcsms.statusbargreper2.R;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GridAdapter extends BaseAdapter {
-	private String[] data;
+	private List<String> data;
 	private LayoutInflater inflater;
 	private TextView tv;
 	private ImageView iv;
 
-	public GridAdapter(Context ctx, String[] data) {
-		this.data = data;
+	public GridAdapter(Context ctx, List<String> mymenu) {
+		this.data = mymenu;
 		inflater = (LayoutInflater) ctx
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -24,13 +26,13 @@ public class GridAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return data.length;
+		return data.size();
 	}
 
 	@Override
 	public Object getItem(int pos) {
 		// TODO Auto-generated method stub
-		return data[pos];
+		return data.get(pos);
 	}
 
 	@Override
@@ -44,10 +46,11 @@ public class GridAdapter extends BaseAdapter {
 		View v = conView;
 		if (v == null) {
 			v = inflater.inflate(R.layout.megrid, null);
+		}else{
 			tv = (TextView) v.findViewById(R.id.grid_txt);
 			iv = (ImageView) v.findViewById(R.id.grid_view);
+			tv.setText(data.get(pos));
 		}
-		tv.setText(data[pos]);
 		return v;
 	}
 

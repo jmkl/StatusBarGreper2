@@ -128,7 +128,7 @@ public class Icon extends LinearLayout {
 		if (!mAttached) {
 			mAttached = true;
 			IntentFilter filter = new IntentFilter();
-			filter.addAction(unit.GREPER_UPDATESTATUSBAR);
+			filter.addAction(unit.GREPER_UPDATESTATUSBARICON);
 			filter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
 			filter.addAction(Intent.ACTION_BATTERY_CHANGED);
 			getContext().registerReceiver(mIntentReceiver, filter, null,
@@ -158,7 +158,7 @@ public class Icon extends LinearLayout {
 			String action = intent.getAction();
 
 			if (action.equals(Intent.ACTION_BATTERY_CHANGED)
-					|| action.equals(unit.GREPER_UPDATESTATUSBAR)) {
+					|| action.equals(unit.GREPER_UPDATESTATUSBARICON)) {
 				statusBaterai = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
 						BatteryManager.BATTERY_STATUS_UNKNOWN);
 				int rawlevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL,
