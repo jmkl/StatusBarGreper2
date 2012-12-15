@@ -54,7 +54,6 @@ public class ColorPickerDialog extends Dialog implements
 	}
 
 	private void setUp(int color) {
-
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View layout = inflater.inflate(R.layout.dialog_color_picker, null);

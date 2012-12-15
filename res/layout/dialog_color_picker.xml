@@ -31,15 +31,6 @@
 		android:layerType="software"
 	/>
 	
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="5dp"
-	    android:layout_marginLeft="6dp"
-	    android:layout_marginRight="6dp"
-	    android:gravity="left"
-	    android:text="@string/press_color_to_apply"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	<LinearLayout
 		android:layout_width="wrap_content"
