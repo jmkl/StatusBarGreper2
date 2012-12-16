@@ -13,12 +13,15 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 
 import dcsms.statusbargreper2.R;
 
 public class BaseSherlockFragmentActivity extends SherlockFragmentActivity {
 	private static final String TAG = "#666";
-	
+
 	protected ActionBar mActionBar;
 	protected ViewPager mPager;
 	protected ArrayList<SherlockFragment> mFragments = new ArrayList<SherlockFragment>();
@@ -73,9 +76,31 @@ public class BaseSherlockFragmentActivity extends SherlockFragmentActivity {
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		SubMenu s = menu.addSubMenu("More").setIcon(R.drawable.more);
+		s.add(0, 0, 0, "About");
+		s.add(0, 1, 1, "Help");
+		s.getItem().setShowAsAction((MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT));
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case 0:
+
+			break;
+
+		case 1:
+			break;
+		}
+		return true;
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tab_container);		
+		setContentView(R.layout.tab_container);
 
 		mActionBar = getSupportActionBar();
 		mActionBar.setDisplayShowTitleEnabled(true);
@@ -83,7 +108,6 @@ public class BaseSherlockFragmentActivity extends SherlockFragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.fragment_container);
 
 	}
-
 
 	public void setAdapter() {
 		mPager.setAdapter(new TabAdapter(getSupportFragmentManager(),
@@ -104,7 +128,7 @@ public class BaseSherlockFragmentActivity extends SherlockFragmentActivity {
 
 	@Override
 	protected void onPause() {
-		
+
 		super.onPause();
 		Log.d(TAG, "onPause");
 	}

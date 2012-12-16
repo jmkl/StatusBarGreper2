@@ -22,6 +22,7 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import dcsms.statusbargreper2.R;
 
@@ -41,7 +42,6 @@ public class ColorPickerDialog extends Dialog implements
 
 	public ColorPickerDialog(Context context, int initialColor) {
 		super(context);
-
 		init(initialColor);
 	}
 
@@ -54,11 +54,12 @@ public class ColorPickerDialog extends Dialog implements
 	}
 
 	private void setUp(int color) {
+		
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View layout = inflater.inflate(R.layout.dialog_color_picker, null);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(layout);
-		setTitle(R.string.dialog_color_picker);
 
 		mColorPicker = (ColorPickerView) layout
 				.findViewById(R.id.color_picker_view);

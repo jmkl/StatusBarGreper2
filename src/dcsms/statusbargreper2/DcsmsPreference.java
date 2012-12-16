@@ -30,6 +30,21 @@ public class DcsmsPreference {
 		getEditor().putInt(key, value).commit();
 	}
 
+	public void saveBoolSetting(String key, boolean value) {
+		getEditor().putBoolean(key, value).commit();
+	}
+	
+	public int getFontSize(){
+		return pref.getInt(unit.PREF_TRAFICSTATE_FONTSIZE, 10);
+	}
+public String getFontFace(){
+	return pref.getString(unit.PREF_TRAFICSTATE_FONT, null);
+}
+	public boolean getTraficStateisShow() {
+		return pref.getBoolean(unit.PREF_TRAFICSTATE_SHOWHIDE, false);
+
+	}
+
 	public int getTraficStateColor() {
 		return pref.getInt(unit.PREF_TRAFICSTATE_COLOR, Color.WHITE);
 	}

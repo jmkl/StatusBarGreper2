@@ -2,7 +2,7 @@ package dcsms.statusbargreper2;
 
 import android.os.Bundle;
 import dcsms.statusbargreper2.sherlock.BaseSherlockFragmentActivity;
-import dcsms.statusbargreper2.sherlock.trafficstate.TStateConfig;
+import dcsms.statusbargreper2.sherlock.Unit.TStateConfig;
 
 public class Hello extends BaseSherlockFragmentActivity {
 	private TStateConfig traffic = new TStateConfig();
@@ -10,7 +10,8 @@ public class Hello extends BaseSherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(R.style.Theme_Sherlock_Light);
+		
+		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		mActionBar.addTab(mActionBar.newTab().setText("TrafficState")
 				.setTabListener(new TabListener(mPager, 0)));

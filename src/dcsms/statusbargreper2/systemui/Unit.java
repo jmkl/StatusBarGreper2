@@ -16,6 +16,10 @@ public int NET_NN = 5;
 public String PREF_LAYOUT="LAYOUT";
 
 public String PREF_TRAFICSTATE_COLOR="Warna Teks TrafficState";
+public String PREF_TRAFICSTATE_SHOWHIDE="Show and Hide TrafficState";
+public String PREF_TRAFICSTATE_FONT="Font TrafficState";
+public String PREF_TRAFICSTATE_FONTSIZE="FontSize TrafficState";
 public int TS_COLOR;
+public String TYPE_FONT="/Fonts/";
 
 }

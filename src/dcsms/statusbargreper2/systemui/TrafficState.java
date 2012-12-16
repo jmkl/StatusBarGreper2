@@ -24,10 +24,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.TrafficStats;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 public class TrafficState extends TextView {
@@ -114,6 +116,25 @@ public class TrafficState extends TextView {
 		SharedPreferences pref = ref.getPref();
 		if (pref.contains(unit.PREF_TRAFICSTATE_COLOR)) {
 			setTextColor(pref.getInt(unit.PREF_TRAFICSTATE_COLOR, Color.WHITE));
+			updateState();
+		}
+		if (pref.contains(unit.PREF_TRAFICSTATE_FONT)) {
+			Typeface tf = Typeface.createFromFile(pref.getString(
+					unit.PREF_TRAFICSTATE_FONT, null));
+			setTypeface(tf);
+			updateState();
+		}
+		if (pref.contains(unit.PREF_TRAFICSTATE_SHOWHIDE)) {
+			boolean isShow = pref.getBoolean(unit.PREF_TRAFICSTATE_SHOWHIDE,
+					false);
+			if (isShow)
+				setVisibility(View.VISIBLE);
+			else
+				setVisibility(View.GONE);
+		}
+		if (pref.contains(unit.PREF_TRAFICSTATE_FONTSIZE)) {
+			int size = pref.getInt(unit.PREF_TRAFICSTATE_FONTSIZE, 10);
+			setTextSize(size);
 			updateState();
 		}
 
